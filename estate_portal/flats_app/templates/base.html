@@ -1581,6 +1581,10 @@
   <!-- Navbar -->
   <nav class="navbar navbar-expand-lg navbar-custom">
     <div class="container">
+      <a class="navbar-brand" href="{% url 'flats_app:flats_list' %}">
+        <i class="bi bi-building"></i>
+        Catalog
+      </a>
 
 
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -1593,10 +1597,33 @@
 
           </li>
 
+            {% if user.is_authenticated %}
+                {% if user.is_owner %}
+                    <a href="{% url 'flats_app:flat_create' %}" class="btn btn-success ms-2">
+                  Add new flat
+                    </a>
+                {% endif %}
+            {% endif %}
 
         </ul>
 
         <div class="d-flex align-items-center">
+          {% if user.is_authenticated %}
+                <span class="user-info me-3">
+                  Hello, {{ user.username }}
+                </span>
+                <form action="{% url 'users_app:logout' %}" method="post" class="d-inline">
+                  {% csrf_token %}
+                  <button class="btn btn-outline-light">Logout</button>
+                </form>
+          {% else %}
+                <a href="{% url 'users_app:login'  %}" class="btn btn-outline-light me-2">
+                  LOGIN
+                </a>
+                <a href="{% url 'users_app:signup'  %}" class="btn btn-outline-light">
+                  SIGN UP
+                </a>
+          {% endif %}
 
         </div>
       </div>

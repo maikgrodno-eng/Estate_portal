@@ -14,6 +14,7 @@ from pathlib import Path
 import environ
 import os
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -129,5 +130,9 @@ STATIC_URL = 'static/'
 
 AUTH_USER_MODEL = 'users_app.User'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_URL = '/media/'
+
+LOGIN_URL = "users_app:login"
+LOGIN_REDIRECT_URL = 'flats_app:flats_list'
+LOGOUT_REDIRECT_URL = "flats_app:flats_list"

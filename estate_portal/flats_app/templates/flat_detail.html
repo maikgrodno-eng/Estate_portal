@@ -1,0 +1,23 @@
+{%extends 'base.html' %}
+
+{% block content %}
+
+<h1>{{ flat.title }}</h1>
+
+<dl>
+    <dt>Price</dt>
+    <dd>${{ flat.price}}</dd>
+
+    <dt>Address</dt>
+    <dd>{{ flat.address}}</dd>
+
+    <dt>Type</dt>
+    <dd>{{ flat.type}}</dd>
+
+    <dt>Area</dt>
+    <dd>{{ flat.area}} m²</dd>
+
+    <dt>Owner</dt>
+    <dd>{{ flat.owner.username}}</dd>
+</dl>
+{% endblock %}

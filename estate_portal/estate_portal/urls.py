@@ -22,8 +22,8 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('flats_app.urls')),
-    #path('users/', include('users_app.urls')),
+    path('', include('flats_app.urls',namespace='flats_app')),
+    path('users/', include('users_app.urls',namespace='users_app')),
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
