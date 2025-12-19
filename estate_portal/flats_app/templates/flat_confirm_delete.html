@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h1> Delete "{{ flat.title }}"?</h1>
+
+<form method="post">
+    {% csrf_token %}
+
+    <button> Yes, delete</button>
+    <a href="{% url 'flats_app:flat_detail' flat.id %}"> No </a>
+</form>
+
+
+
+{% endblock%}

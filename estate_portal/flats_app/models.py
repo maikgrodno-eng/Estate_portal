@@ -29,3 +29,32 @@ class Flat(models.Model):
 
     class Meta:
         ordering = ['-created_at']
+
+
+class DealRequest(models.Model):
+    WAITING = 'waiting'
+    REJECTED = 'rejected'
+    APPROVED = 'approved'
+
+    STATUS_CHOICES = [
+        (WAITING, 'waiting'),
+        (REJECTED, 'rejected'),
+        (APPROVED, 'approved'),
+    ]
+
+    flat = models.ForeignKey(Flat, on_delete=models.CASCADE)
+    seeker = models.ForeignKey(settings.AUTH_USER_MODEL,
+                               on_delete=models.CASCADE,
+                               related_name='deal_request')
+    comment = models.TextField()
+    date_approved = models.DateTimeField(null=True, blank=True)
+    status = models.CharField(
+        max_length=10,
+        choices=STATUS_CHOICES,
+        default=WAITING
+    )
+
+    def __str__(self):
+        return f"Request № {self.id} on {self.flat.title}"
+
+

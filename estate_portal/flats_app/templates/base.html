@@ -1600,7 +1600,10 @@
             {% if user.is_authenticated %}
                 {% if user.is_owner %}
                     <a href="{% url 'flats_app:flat_create' %}" class="btn btn-success ms-2">
-                  Add new flat
+                      Add new flat
+                    </a>
+                    <a href="{% url 'flats_app:owner_deal_request' %}" class="btn btn-outline-lite ms-2">
+                      My Request
                     </a>
                 {% endif %}
             {% endif %}
